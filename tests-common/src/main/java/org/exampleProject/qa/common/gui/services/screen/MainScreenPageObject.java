@@ -55,6 +55,10 @@ public class MainScreenPageObject extends AbstractMobilePageObject{
         return alertText.getText();
     }
 
+    public String getTextFieldValue(){
+        return editTextField.getText();
+    }
+
     public boolean isLoaded(){
         return editTextField.isDisplayed();
     }

@@ -13,7 +13,7 @@ public class MainScreenStepsDef extends AbstractStepsDef{
         mainScreenPageObject.isLoaded();
     }
 
-    @When("^User fill textfield with \"([^\"]*)\" on main screen$")
+    @When("^User fill Text Field with \"([^\"]*)\" on main screen$")
     public void userFillTextfieldWith(String sInputString) {
         mainScreenPageObject.fillTextField(sInputString);
     }
@@ -23,8 +23,20 @@ public class MainScreenStepsDef extends AbstractStepsDef{
        assertThat(mainScreenPageObject.getHelloText()).isEqualToIgnoringCase(sExpectedText);
     }
 
-    @And("^press OK button on main screen$")
+
+    @When("User press OK button on main screen$")
     public void pressOKButtonOnMainScreen() {
         mainScreenPageObject.pressOkButton();
+    }
+
+    @Then("^Alert window contains \"([^\"]*)\"$")
+    public void alertWindowContains(String sAlertMessage) {
+        assertThat(mainScreenPageObject.getAlertText().equalsIgnoreCase(sAlertMessage));
+    }
+
+    @And("^Text Field is empty on main screen$")
+    public void textFieldIsEmptyOnMainScreen() {
+        mainScreenPageObject.clearEditText();
+        assertThat(mainScreenPageObject.getTextFieldValue().isEmpty());
     }
 }
