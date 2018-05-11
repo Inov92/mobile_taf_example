@@ -23,7 +23,7 @@ public class ExampleRestStepsDef extends AbstractStepsDef{
         System.out.println("Connected\n");
     }
 
-    @When("^User send GET request to to Random Quote service$")
+    @When("^API: send GET request to to Random Quote service$")
     public void userSendGETRequestToToRandomQuoteService() throws IOException {
         dataContainer.setRestServiceOutput(randomQuoteEndpoint.getQuote());
         dataContainer.setQuoteServiceResponse();
@@ -35,10 +35,16 @@ public class ExampleRestStepsDef extends AbstractStepsDef{
         assertThat(sResponseCode.equals(sEcpectedResposeCode));
     }
 
-    @And("^response content is not empty$")
+    @Then("^response from Random Quote service contains quote$")
     public void responseContentIsNotEmpty() {
         String sQuote = dataContainer.getQuoteServiceResponse().getValue().getQuote();
         System.out.println(sQuote);
         assertThat(!sQuote.isEmpty());
+    }
+
+    @Then("^response type from Random Quote service: \"([^\"]*)\"$")
+    public void responseTypeFromRandomQuoteService(String sExpectedType) {
+        String sResponseType = dataContainer.getQuoteServiceResponse().getType();
+        assertThat(sResponseType.equalsIgnoreCase(sExpectedType));
     }
 }

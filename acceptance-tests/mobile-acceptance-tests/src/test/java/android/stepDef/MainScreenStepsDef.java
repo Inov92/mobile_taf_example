@@ -39,4 +39,5 @@ public class MainScreenStepsDef extends AbstractStepsDef{
         mainScreenPageObject.clearEditText();
         assertThat(mainScreenPageObject.getTextFieldValue().isEmpty());
     }
+
 }

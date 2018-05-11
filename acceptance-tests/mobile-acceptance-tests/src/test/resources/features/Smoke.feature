@@ -8,6 +8,7 @@ Feature: Smoke simple android UI tests
     And User press OK button on main screen
     Then Welcome text contains "Hello Test data!" on main screen
 
+
   @SeverityLevel.CRITICAL @TestCaseId("example-2")
   Scenario: User submits empty data
     Given User opens application on main screen
